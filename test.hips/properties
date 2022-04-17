@@ -25,7 +25,7 @@ obs_title            = christian
 #em_max              = Stop in spectral coordinates in meters
 hips_builder         = Aladin/HipsGen v10.139
 hips_version         = 1.4
-hips_release_date    = 2022-04-17T17:15Z
+hips_release_date    = 2022-04-17T19:50Z
 hips_frame           = equatorial
 hips_order           = 6
 hips_order_min       = 0
@@ -40,6 +40,6 @@ s_pixel_scale        = 0.002222
 dataproduct_type     = image
 moc_sky_fraction     = 0.03827
 hips_estsize         = 2769290
-hipsgen_date         = 2022-04-17T17:14Z
+hipsgen_date         = 2022-04-17T19:49Z
 hipsgen_params       = -f in=images/ out=test.hips creator_did=christian maxThread=56 "hips_pixel_cut=-0.2 2 sqrt" img=images/L836277int.fits
-hips_creation_date   = 2022-04-17T17:14Z
+hips_creation_date   = 2022-04-17T19:49Z
