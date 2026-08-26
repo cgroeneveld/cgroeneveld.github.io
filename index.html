@@ -16,12 +16,12 @@ i<!DOCTYPE html>
 <style>
   :root{
     --phthalo-1: #05261c;   /* deepest, near-black green */
-    --phthalo-true: #123524; /* true phthalo green (PG7) */
+    --phthalo-2: #0b3d2c;   /* core phthalo green */
     --phthalo-3: #124a37;   /* lifted mid tone */
     --phthalo-4: #1c5c45;   /* highlight edge */
     --parchment: #f3ede0;   /* warm off-white for text/cards */
     --parchment-dim: #cdd8ce;
-    --gold: #361612;        /* single accent, used sparingly, no longer gold though (claude has been looking at too much dubai websites) */
+    --gold: #c9a24b;        /* single accent, used sparingly */
   }
   @font-face {
   font-family: 'Clarendon';
@@ -33,7 +33,8 @@ i<!DOCTYPE html>
   html{ scroll-behavior: smooth; }
 
   body{
-    background: linear-gradient(160deg, var(--phthalo-1) 0%, var(--phthalo-true) 45%, var(--phthalo-3) 75%, var(--phthalo-4) 100%);    background-attachment: fixed;
+    background: linear-gradient(160deg, var(--phthalo-1) 0%, var(--phthalo-2) 55%, var(--phthalo-3) 100%);
+    background-attachment: fixed;
     color: var(--parchment);
     font-family: 'Source Serif 4', Georgia, serif;
     letter-spacing: 0.01em;
@@ -103,7 +104,8 @@ i<!DOCTYPE html>
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: linear-gradient(160deg, var(--phthalo-4), var(--phthalo-true));    display:flex;
+    background: linear-gradient(160deg, var(--phthalo-4), var(--phthalo-2));
+    display:flex;
     align-items:center;
     justify-content:center;
     font-family: 'Fraunces', serif;
