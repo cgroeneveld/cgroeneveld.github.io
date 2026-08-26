@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Christian Groeneveld</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Fonts: Fraunces (display, characterful serif) + Source Serif 4 (body) + Inter (UI/labels) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --phthalo-1: #05261c;   /* deepest, near-black green */
+    --phthalo-2: #0b3d2c;   /* core phthalo green */
+    --phthalo-3: #124a37;   /* lifted mid tone */
+    --phthalo-4: #1c5c45;   /* highlight edge */
+    --parchment: #f3ede0;   /* warm off-white for text/cards */
+    --parchment-dim: #cdd8ce;
+    --gold: #c9a24b;        /* single accent, used sparingly */
+  }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: linear-gradient(160deg, var(--phthalo-1) 0%, var(--phthalo-2) 55%, var(--phthalo-3) 100%);
+    background-attachment: fixed;
+    color: var(--parchment);
+    font-family: 'Source Serif 4', Georgia, serif;
+    letter-spacing: 0.01em;
+  }
+
+  .plate-texture{
+    display: none;
+  }
+
+  .eyebrow{
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  h1, h2, h3, .display-serif{
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    color: var(--parchment);
+  }
+
+  h1.hero-name{
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 1.05;
+  }
+
+  .navbar{
+    background: linear-gradient(180deg, rgba(5,38,28,0.92), rgba(5,38,28,0.0));
+    backdrop-filter: blur(2px);
+  }
+  .navbar-brand{
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--parchment) !important;
+  }
+  .nav-link{
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    color: var(--parchment-dim) !important;
+    transition: color 0.2s ease;
+  }
+  .nav-link:hover{ color: var(--gold) !important; }
+
+  section{ position: relative; z-index: 1; }
+
+  .divider{
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    border: none;
+    margin: 1.25rem 0 1.75rem;
+  }
+
+  .portrait-frame{
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,162,75,0.55);
+    padding: 6px;
+  }
+  .portrait-frame > div{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(160deg, var(--phthalo-4), var(--phthalo-2));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--parchment-dim);
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .card-plate{
+    background: rgba(243, 237, 224, 0.04);
+    border: 1px solid rgba(243, 237, 224, 0.14);
+    border-radius: 4px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .card-plate:hover{
+    border-color: rgba(201,162,75,0.5);
+    background: rgba(243, 237, 224, 0.07);
+  }
+
+  .pub-entry{
+    border-bottom: 1px solid rgba(243,237,224,0.12);
+    padding: 1.1rem 0;
+  }
+  .pub-entry:last-child{ border-bottom: none; }
+  .pub-year{
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .pub-venue{
+    font-style: italic;
+    color: var(--parchment-dim);
+    font-size: 0.95rem;
+  }
+
+  .btn-parchment{
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(201,162,75,0.6);
+    color: var(--parchment);
+    background: transparent;
+    border-radius: 2px;
+    padding: 0.55rem 1.4rem;
+  }
+  .btn-parchment:hover{
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--phthalo-1);
+  }
+
+  .contact-link{
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--parchment-dim);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+  }
+  .contact-link:hover{
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  footer{
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    color: rgba(243,237,224,0.45);
+  }
+
+  :focus-visible{
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="plate-texture"></div>
+
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
+  <div class="container">
+    <a class="navbar-brand" href="#">C. Groeneveld</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto gap-lg-4">
+        <li class="nav-item"><a class="nav-link" href="#about">ABOUT</a></li>
+        <li class="nav-item"><a class="nav-link" href="#research">RESEARCH</a></li>
+        <li class="nav-item"><a class="nav-link" href="#publications">PUBLICATIONS</a></li>
+        <li class="nav-item"><a class="nav-link" href="#teaching">TEACHING</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">CONTACT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="d-flex align-items-center" style="min-height: 100vh; padding-top: 5rem;">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-8">
+        <p class="eyebrow mb-3">Istituto di Radioastronomia - INAF Bologna</p>
+        <h1 class="hero-name mb-3">Dr. Christian Groeneveld</h1>
+        <p class="fs-5 mb-4" style="max-width: 560px; color: var(--parchment-dim);">
+          I study [your research area] — with particular interest in [sub-topic] and its
+          implications for [broader question]. This site collects my research, teaching, and writing.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="#publications" class="btn btn-parchment">View Publications</a>
+          <a href="#contact" class="btn btn-parchment">Get in Touch</a>
+        </div>
+      </div>
+      <div class="col-lg-4 d-flex justify-content-lg-end">
+        <div class="portrait-frame">
+          <div>Portrait<br>Photograph</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-5 py-lg-6">
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-lg-7">
+        <p class="eyebrow">01 — Biography</p>
+        <h2 class="mb-0">About</h2>
+        <hr class="divider">
+        <p style="color: var(--parchment-dim); line-height: 1.85;">
+          I am an [Assistant / Associate / Full] Professor at [University Name], where I lead the
+          [Lab or Group Name]. My work sits at the intersection of [Field A] and [Field B], and has
+          been supported by [funding body / grant]. Before joining [University Name], I completed my
+          Ph.D. at [Institution] and a postdoctoral fellowship at [Institution].
+        </p>
+        <p style="color: var(--parchment-dim); line-height: 1.85;">
+          Outside the lab, I write occasionally about [side interest], and mentor students working
+          on [related topic]. Replace this biography with your own — three short paragraphs is
+          usually enough.
+        </p>
+      </div>
+      <div class="col-lg-4 offset-lg-1">
+        <p class="eyebrow">Quick Facts</p>
+        <ul class="list-unstyled" style="color: var(--parchment-dim); line-height: 2.1;">
+          <li>Ph.D., [Institution], [Year]</li>
+          <li>[Current Position], [University]</li>
+          <li>[Number] publications, [Number] citations</li>
+          <li><a href="#" class="contact-link">Download CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" class="py-5 py-lg-6">
+  <div class="container py-4">
+    <p class="eyebrow">02 — Focus Areas</p>
+    <h2 class="mb-0">Research Interests</h2>
+    <hr class="divider">
+    <div class="row g-4 mt-2">
+      <div class="col-md-4">
+        <div class="card-plate p-4 h-100">
+          <h3 class="h5">Topic One</h3>
+          <p style="color: var(--parchment-dim); font-size: 0.95rem;">
+            A short description of this research thread — the question it asks and why it matters.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-plate p-4 h-100">
+          <h3 class="h5">Topic Two</h3>
+          <p style="color: var(--parchment-dim); font-size: 0.95rem;">
+            A short description of this research thread — the question it asks and why it matters.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-plate p-4 h-100">
+          <h3 class="h5">Topic Three</h3>
+          <p style="color: var(--parchment-dim); font-size: 0.95rem;">
+            A short description of this research thread — the question it asks and why it matters.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications" class="py-5 py-lg-6">
+  <div class="container py-4">
+    <p class="eyebrow">03 — Selected Work</p>
+    <h2 class="mb-0">Publications</h2>
+    <hr class="divider">
+
+    <div class="pub-entry">
+      <span class="pub-year">2026</span>
+      <h3 class="h5 mt-1 mb-1">Title of a Representative Paper Goes Here</h3>
+      <p class="pub-venue mb-1">Journal or Conference Name</p>
+      <p style="color: var(--parchment-dim); font-size: 0.92rem;" class="mb-0">Alvarez, J., Coauthor, A., &amp; Coauthor, B.</p>
+    </div>
+
+    <div class="pub-entry">
+      <span class="pub-year">2025</span>
+      <h3 class="h5 mt-1 mb-1">Another Paper Title, Slightly Shorter</h3>
+      <p class="pub-venue mb-1">Journal or Conference Name</p>
+      <p style="color: var(--parchment-dim); font-size: 0.92rem;" class="mb-0">Alvarez, J., &amp; Coauthor, C.</p>
+    </div>
+
+    <div class="pub-entry">
+      <span class="pub-year">2024</span>
+      <h3 class="h5 mt-1 mb-1">A Third Publication with a Longer, More Descriptive Title</h3>
+      <p class="pub-venue mb-1">Journal or Conference Name</p>
+      <p style="color: var(--parchment-dim); font-size: 0.92rem;" class="mb-0">Coauthor, D., &amp; Alvarez, J.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHING -->
+<section id="teaching" class="py-5 py-lg-6">
+  <div class="container py-4">
+    <p class="eyebrow">04 — Courses</p>
+    <h2 class="mb-0">Teaching</h2>
+    <hr class="divider">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card-plate p-4 h-100">
+          <p class="eyebrow mb-1">[COURSE 101]</p>
+          <h3 class="h5">Introduction to [Subject]</h3>
+          <p style="color: var(--parchment-dim); font-size: 0.9rem;" class="mb-0">Fall [Year] &middot; Undergraduate</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-plate p-4 h-100">
+          <p class="eyebrow mb-1">[COURSE 501]</p>
+          <h3 class="h5">Advanced Seminar in [Subject]</h3>
+          <p style="color: var(--parchment-dim); font-size: 0.9rem;" class="mb-0">Spring [Year] &middot; Graduate</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-5 py-lg-6">
+  <div class="container py-5 text-center">
+    <p class="eyebrow">05 — Get in Touch</p>
+    <h2 class="mb-3">Contact</h2>
+    <hr class="divider mx-auto">
+    <p style="color: var(--parchment-dim); max-width: 480px; margin: 0 auto 1.5rem;">
+      I welcome inquiries from prospective students, collaborators, and journalists.
+    </p>
+    <div class="d-flex justify-content-center gap-4 flex-wrap">
+      <a href="mailto:jordan.alvarez@university.edu" class="contact-link">jordan.alvarez@university.edu</a>
+      <a href="#" class="contact-link">Google Scholar</a>
+      <a href="#" class="contact-link">ORCID</a>
+      <a href="#" class="contact-link">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer class="text-center py-4">
+  <div class="container">
+    &copy; 2026 Jordan Alvarez. Built with Bootstrap.
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
