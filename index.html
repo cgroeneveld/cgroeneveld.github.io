@@ -131,6 +131,29 @@ i<!DOCTYPE html>
     border-color: rgba(201,162,75,0.5);
     background: rgba(243, 237, 224, 0.07);
   }
+	
+	.card-plate{
+  overflow: hidden;            /* clips the image to the rounded corners */
+}
+
+.card-plate .card-img{
+  aspect-ratio: 16 / 10;       /* same shape for all images */
+  width: 100%;
+  object-fit: cover;           /* crop instead of stretching */
+  display: block;
+  border-bottom: 1px solid rgba(179, 101, 74, 1);
+  filter: saturate(0.9) brightness(0.92);
+  transition: filter 0.3s ease, transform 0.4s ease;
+}
+
+.card-plate:hover .card-img{
+  filter: saturate(1) brightness(1);
+  transform: scale(1.03);
+}
+
+.card-plate .card-body-pad{
+  padding: 1.5rem;
+}
 
   .pub-entry{
     border-bottom: 1px solid rgba(179, 101, 74, 1);
@@ -299,15 +322,18 @@ i<!DOCTYPE html>
     <hr class="divider">
     <div class="row g-4 mt-2">
       <div class="col-md-4">
-        <div class="card-plate p-4 h-100">
-          <h3 class="h5">Topic One</h3>
+        <div class="card-plate h-100">
+		  <img class="card-img" src="3C196_publication.png" alt="LBA long baseline image of 3C 196" loading="lazy">
+		  <div class="card-body-part">
+          <h3 class="h5">LBA VLBI</h3>
           <p style="color: var(--parchment-dim); font-size: 0.95rem;">
-            A short description of this research thread — the question it asks and why it matters.
+            Calibration of the longest baselines of LOFAR at low frequencies (below 80 MHz), in order to produce sharp images.
           </p>
+		  </div>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card-plate p-4 h-100">
+        <div class="card-plate h-100">
           <h3 class="h5">Topic Two</h3>
           <p style="color: var(--parchment-dim); font-size: 0.95rem;">
             A short description of this research thread — the question it asks and why it matters.
@@ -315,7 +341,7 @@ i<!DOCTYPE html>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card-plate p-4 h-100">
+        <div class="card-plate h-100">
           <h3 class="h5">Topic Three</h3>
           <p style="color: var(--parchment-dim); font-size: 0.95rem;">
             A short description of this research thread — the question it asks and why it matters.
